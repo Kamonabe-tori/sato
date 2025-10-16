@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今年の瑞木祭までの日数</title>
+  <style>
+    body {
+      background: radial-gradient(circle at center, #3a1f04 0%, #1a0f05 100%);
+      color: #f8f3e1;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    section {
+      background: #4b2e05;
+      border: 5px solid #cfa972;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(255, 180, 80, 0.3), inset 0 0 10px #2e1802;
+      padding: 2rem;
+      max-width: 400px;
+      width: 80%;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      line-height: 1.5;
+      color: #ffe8b2;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px rgba(255, 200, 120, 0.7);
+    }
+
+    h2 span {
+      font-size: 1.1rem;
+      color: #ffcc66;
+      display: block;
+      letter-spacing: 2px;
+    }
+
+    .timer {
+      font-family: 'Courier New', monospace;
+      font-size: 1.6rem;
+      background: #2c1a07;
+      padding: 1rem;
+      border-radius: 8px;
+      color: #ffebbb;
+      box-shadow: inset 0 0 10px rgba(255, 210, 120, 0.3);
+    }
+
+    #day, #hour, #min, #sec {
+      font-size: 2rem;
+      color: #ffb347;
+      text-shadow: 0 0 10px rgba(255, 150, 50, 0.7);
+    }
+
+    /* 提灯っぽいアニメーション */
+    @keyframes swing {
+      0%, 100% { transform: rotate(1deg); }
+      50% { transform: rotate(-1deg); }
+    }
+
+    section {
+      animation: swing 2s infinite ease-in-out;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #e0cfa5;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h2><span>知ってました？</span>2025年文化祭まで</h2>
+    <p class="timer">あと<span id="day">0</span>日<span id="hour">0</span>時間
+      <span id="min">0</span>分<span id="sec">0</span>秒</p>
+  </section>
+  <footer> &copy;Sato Itsuki</footer>
+
+  <script>
+    'use strict'
+    function countdown(due){
+      const now = new Date();
+      const rest = due.getTime() - now.getTime();
+      const sec = Math.floor(rest / 1000) % 60;
+      const min = Math.floor(rest / (1000 * 60)) % 60;
+      const hours = Math.floor(rest / (1000 * 60 * 60)) % 24;
+      const days = Math.floor(rest / (1000 * 60 * 60 * 24));
+      return [days, hours, min, sec];
+    }
+
+    const goal = new Date(2025, 10, 8); // 11月8日
+
+    function recalc(){
+      const counter = countdown(goal);
+      document.getElementById('day').textContent = counter[0];
+      document.getElementById('hour').textContent = counter[1];
+      document.getElementById('min').textContent = counter[2];
+      document.getElementById('sec').textContent = counter[3];
+      setTimeout(recalc, 1000);
+    }
+
+    recalc();
+  </script>
+</body>
+</html>
