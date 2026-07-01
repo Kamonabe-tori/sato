@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学内限定マッチングサイト</title>
+  <link rel="stylesheet" href="css/match.css">
+  <style>
+    /* 全体の背景：あったかいクリーム色 */
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+      background-color: #fdfaf4; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px; /* スマホではみ出さないための余白 */
+    }
+
+    /* フォームのカード：ふんわりした白いクッションのようなイメージ */
+    .form-container {
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(229, 150, 114, 0.15);
+      width: 100%;
+      max-width: 440px; /* コースが並びやすいように少しだけ横幅を広げました */
+      box-sizing: border-box;
+      border: 2px solid #f9e6d3; /* 優しいベージュの枠線 */
+    }
+
+    h2 {
+      text-align: center;
+      color: #9c6644; /* チョコレートのような温かいブラウン */
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.6rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #b07d62;
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #7f5539;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    /* 入力欄（氏名・年齢）：丸みを持たせて優しいオレンジのフォーカス線 */
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e6ccb2;
+      border-radius: 10px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      background-color: #fffdfa;
+      color: #7f5539;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus {
+      border-color: #dda15e; /* フォーカスした時はあったかいオレンジに */
+      background-color: #ffffff;
+    }
+
+    /* 選択肢のグループ（性別・コース共通） */
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap; /* 折り返しを許可 */
+      gap: 10px;
+    }
+
+    /* 押しやすくおしゃれなカスタムボタンのスタイル */
+    .custom-radio-label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: normal;
+      background: #fffdfa;
+      border: 2px solid #e6ccb2;
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    /* 実際のチェック円の色変更 */
+    .custom-radio-label input[type="radio"] {
+      margin-right: 8px;
+      accent-color: #dda15e; 
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ホバーしたとき（マウスをのせたとき） */
+    .custom-radio-label:hover {
+      background: #fef1e6;
+      border-color: #dda15e;
+    }
+
+    /* ボタン：あったかいテラコッタ・オレンジ色 */
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background-color: #dda15e;
+      color: white;
+      border: none;
+      border-radius: 30px; /* ぷっくりした丸いボタン */
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(221, 161, 94, 0.3);
+      transition: all 0.2s;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background-color: #bc6c25; /* 少し濃いあったかブラウンオレンジに */
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(188, 108, 37, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>プロフィール登録</h2>
+  <div class="subtitle">あなたについて教えてください 🍊</div>
+
+  <form id="profileForm" onsubmit="saveProfile(event)">
+    <!-- 氏名入力 -->
+    <div class="form-group">
+      <label for="name">氏名（ニックネーム可）</label>
+      <input type="text" id="name" required placeholder="例：産能太郎">
+    </div>
+
+    <!-- 年齢入力 -->
+    <div class="form-group">
+      <label for="age">年齢</label>
+      <input type="number" id="age" min="18" max="100" required placeholder="例：20">
+    </div>
+
+    <!-- 性別選択 -->
+    <div class="form-group">
+      <label>性別</label>
+      <div class="radio-group">
+        <label class="custom-radio-label">
+          <input type="radio" name="gender" value="男性" required> 男性
+        </label>
+        <label class="custom-radio-label">
+          <input type="radio" name="gender" value="女性"> 女性
+        </label>
+      </div>
+    </div>
+
+    <!-- コース選択（新しく追加） -->
+    <div class="form-group">
+      <label>所属コース</label>
+      <div class="radio-group">
+        <label class="custom-radio-label">
+          <input type="radio" name="course" value="スポーツマネジメントコース" required>スポーツマネジメントコース
+        </label>
+        <label class="custom-radio-label">
+          <input type="radio" name="course" value="マーケティング企画コース">マーケティング企画コース
+        </label>
+        <label class="custom-radio-label">
+          <input type="radio" name="course" value="コンテンツビジネスコース">コンテンツビジネスコース
+        </label>
+        <label class="custom-radio-label">
+          <input type="radio" name="course" value="ビジネスマネジメントコース">ビジネスマネジメントコース
+        </label>
+        <label class="custom-radio-label">
+          <input type="radio" name="course" value="デジタルビジネスデザインコース">デジタルビジネスデザインコース
+        </label>
+      </div>
+    </div>
+
+    <!-- 登録ボタン -->
+    <button type="submit" class="submit-btn">登録してすすむ ✨</button>
+  </form>
+</div>
+
+<script>
+  function saveProfile(event) {
+    event.preventDefault(); // ページのリロードを防ぐ
+
+    // 入力された値を取得
+    const name = document.getElementById('name').value;
+    const age = document.getElementById('age').value;
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    const course = document.querySelector('input[name="course"]:checked').value; // コースを取得
+
+    // 確認用のポップアップ表示
+    alert(`登録しました！\n氏名: ${name}\n年齢: ${age}歳\n性別: ${gender}\nコース: ${course}`);
+    
+    // 成功ページに移動させる場合はここを有効にしてください
+    window.location.href = "hope.html";
+  }
+</script>
+
+</body>
+</html>

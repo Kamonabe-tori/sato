@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>理想の恋人探しています</title>
+  <style>
+    /* 全体の背景：あったかいピンク・クリーム色 */
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+      background-color: #fff5f5; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    /* 演出用のカード */
+    .search-container {
+      text-align: center;
+      background: #ffffff;
+      padding: 50px 40px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(255, 149, 149, 0.2);
+      max-width: 400px;
+      width: 90%;
+      border: 2px solid #ffe3e3;
+    }
+
+    h2 {
+      color: #e56b6f; /* 優しいピンクレッド */
+      font-size: 1.6rem;
+      margin-top: 0;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .status-text {
+      color: #b5838d;
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    /* ハートのふわふわアニメーション */
+    .heart-loader {
+      font-size: 3.5rem;
+      display: inline-block;
+      animation: heartbeat 1.2s infinite ease-in-out;
+      margin-bottom: 20px;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.15); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.15); }
+      70% { transform: scale(1); }
+    }
+
+    /* 5秒のカウントダウンを目立たないように下に表示（お好みで消してもOK） */
+    .countdown-bar {
+      width: 100%;
+      height: 4px;
+      background-color: #f0f0f0;
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .countdown-progress {
+      width: 0%;
+      height: 100%;
+      background-color: #ffb4a2;
+      animation: progress 5s linear forwards;
+    }
+
+    @keyframes progress {
+      to { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="search-container">
+  <!-- 動くハートマーク -->
+  <div class="heart-loader">💝</div>
+  
+  <h2>理想の恋人探しています</h2>
+  <div class="status-text" id="status">条件に合うお相手を検索中...</div>
+
+  <!-- 下部でこっそり5秒進むゲージ -->
+  <div class="countdown-bar">
+    <div class="countdown-progress"></div>
+  </div>
+</div>
+
+<script>
+  // 5秒（5000ミリ秒）経ったら別ページに飛ばす処理
+  setTimeout(() => {
+    // 飛ばしたい先のHTMLファイル名やURLをここに書きます
+    window.location.href = "miss.html"; 
+  }, 4000);
+</script>
+
+</body>
+</html>

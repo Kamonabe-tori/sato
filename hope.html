@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>理想の異性の特徴 - マッチングサイト</title>
+  <style>
+    /* 全体の背景：あったかいクリーム色 */
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+      background-color: #fdfaf4; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    /* フォームのカード：ふんわりした白いクッションのようなイメージ */
+    .form-container {
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(229, 150, 114, 0.15);
+      width: 100%;
+      max-width: 440px;
+      box-sizing: border-box;
+      border: 2px solid #f9e6d3;
+    }
+
+    h2 {
+      text-align: center;
+      color: #9c6644; /* 温かいブラウン */
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.6rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #b07d62;
+      font-size: 0.9rem;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #7f5539;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    /* 複数行入力できるテキストエリアのスタイル */
+    textarea {
+      width: 100%;
+      height: 120px; /* しっかり書けるように少し高さを確保 */
+      padding: 12px;
+      border: 2px solid #e6ccb2;
+      border-radius: 10px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      background-color: #fffdfa;
+      color: #7f5539;
+      outline: none;
+      resize: vertical; /* ユーザーが縦方向にだけサイズ変更できるようにする */
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    textarea:focus {
+      border-color: #dda15e; /* フォーカス時はあったかオレンジ */
+      background-color: #ffffff;
+    }
+
+    /* 補足のヒント文字 */
+    .hint {
+      font-size: 0.8rem;
+      color: #a98467;
+      margin-top: 6px;
+    }
+
+    /* ボタン：あったかいテラコッタ・オレンジ色 */
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background-color: #dda15e;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(221, 161, 94, 0.3);
+      transition: all 0.2s;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      background-color: #bc6c25;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(188, 108, 37, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>理想のタイプ</h2>
+  <div class="subtitle">マッチングしたいお相手について教えてください 🧸</div>
+
+  <form id="idealForm" onsubmit="saveIdeal(event)">
+    
+    <!-- 異性に求める特徴の入力欄 -->
+    <div class="form-group">
+      <label for="idealFeatures">希望する異性の特徴・求めるもの</label>
+      <textarea 
+        id="idealFeatures" 
+        required 
+        placeholder="例：聞き上手な人、一緒にカフェ巡りができる人など。簡単にで大丈夫です！"
+      ></textarea>
+      <div class="hint">※性格や共通の趣味、外見の好みなど、自由に入力してください。</div>
+    </div>
+
+    <!-- 次へすすむボタン -->
+    <button type="submit" class="submit-btn">入力を完了する ✨</button>
+  </form>
+</div>
+
+<script>
+  function saveIdeal(event) {
+    event.preventDefault(); // ページのリロードを防ぐ
+
+    // 入力された文字を取得
+    const idealFeatures = document.getElementById('idealFeatures').value;
+
+    alert(`入力を受け付けました！\n\n【希望する特徴】\n${idealFeatures}`);
+    
+    // 完了後に別のページに飛ばしたい場合はここにURLを書きます
+    window.location.href = "roding.html";
+  }
+</script>
+
+</body>
+</html>
