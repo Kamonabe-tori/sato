@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>産業能率大学専用マッチングアプリ</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f7fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #718096;
+            margin-bottom: 24px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-yes {
+            background-color: #3182ce;
+            color: white;
+        }
+        .btn-yes:hover { background-color: #2b6cb0; }
+        .btn-no {
+            background-color: #e2e8f0;
+            color: #4a5568;
+        }
+        .btn-no:hover { background-color: #cbd5e0; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>産業能率大学専用マッチングアプリ</h1>
+    <p>あなたは産能生ですか？<br>このアプリは産能生限定です。正直に答えてください。</p>
+    
+    <div class="btn-group">
+        <button class="btn-yes" onclick="answer(true)">はい 🎓</button>
+        <button class="btn-no" onclick="answer(false)">いいえ 🚪</button>
+    </div>
+</div>
+
+<script>
+    function answer(sanno) {
+        if (sanno) {
+            alert("別サイトに飛びます。");
+            window.location.href = "loginsucess.html"; // 次のページに進む場合のコード
+        } else {
+            alert("このアプリは産能生限定のため、ご利用いただけません。🤡");
+            window.location.href = "https://with.is/welcome"; // 追い出す場合のコード
+        }
+    }
+</script>
+
+</body>
+</html>
